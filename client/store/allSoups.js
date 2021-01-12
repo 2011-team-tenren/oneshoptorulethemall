@@ -7,7 +7,7 @@ const setAllSoups = soups => {
   }
 }
 
-const fetchAllSoups = () => {
+export const fetchAllSoups = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('api/soups')
