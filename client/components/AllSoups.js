@@ -1,6 +1,14 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+// UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
+//import {fetchAllSoups} from '../store/allSoups'
 
-export default class AllSoups extends Component {
+export class AllSoups extends Component {
+  componentDidMount() {
+    // UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
+    //this.props.fetchAllSoupsInReact()
+  }
+
   render() {
     const imageStyle = {
       height: '20rem',
@@ -27,6 +35,8 @@ export default class AllSoups extends Component {
           'https://www.campbellsoup.ca/wp-content/uploads/2020/04/Campbells_Warhol_040820-1-2048x1071.jpg'
       }
     ]
+
+    // EDIT BELOW RETURN SECTION TO USE REDUX STORE INSTEAD OF DUMMY DATA ONCE REDUX AND API SECTION IS COMPLETE
     return (
       <div>
         <h1>All Soups</h1>
@@ -55,3 +65,19 @@ export default class AllSoups extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    // UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
+    //soups: state.soups
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
+    //fetchAllSoupsInReact: () => dispatch(fetchAllSoups())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllSoups)
