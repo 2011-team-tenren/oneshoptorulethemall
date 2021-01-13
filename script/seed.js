@@ -30,7 +30,7 @@ async function seed() {
   const [cody, murphy] = await User.findAll()
   const [chicken, veggie] = await Soup.findAll()
 
-  await cody.addSoup([chicken, veggie])
+  await cody.addSoup(chicken, {through: {quantity: 5, price: 100}})
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${soups.length} soups`)
