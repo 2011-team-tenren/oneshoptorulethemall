@@ -27,13 +27,6 @@ export class AllSoups extends Component {
                 {name}: ${price} per can
               </h2>
               <h3>Ingredients</h3>
-              <ol>
-                {ingredients.map(ingredient => {
-                  return (
-                    <li key={ingredients.indexOf(ingredient)}>{ingredient}</li>
-                  )
-                })}
-              </ol>
               <img src={imageUrl} style={imageStyle} />
               <button type="submit">Add to Cart</button>
             </div>
