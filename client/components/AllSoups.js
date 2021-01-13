@@ -13,27 +13,6 @@ export class AllSoups extends Component {
       width: 'auto'
     }
 
-    const soups = [
-      {
-        id: 1,
-        name: 'Campbells Chicken Noodle Soup',
-        price: 6.0,
-        ingredients: ['chicken', 'noodles', 'broth'],
-        quantity: 1000,
-        imageUrl:
-          'https://www.campbellsoup.ca/wp-content/uploads/2020/04/Campbells_Warhol_040820-1-2048x1071.jpg'
-      },
-      {
-        id: 2,
-        name: 'Vegetable Soup',
-        price: 6.0,
-        ingredients: ['onion', 'celary', 'beans', 'broth'],
-        quantity: 1000,
-        imageUrl:
-          'https://www.campbellsoup.ca/wp-content/uploads/2020/04/Campbells_Warhol_040820-1-2048x1071.jpg'
-      }
-    ]
-
     const soupsInReact = this.props.soups.soups
 
     return (
