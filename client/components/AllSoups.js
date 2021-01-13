@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
-//import {fetchAllSoups} from '../store/allSoups'
+import {fetchAllSoups} from '../store/allSoups'
 
 export class AllSoups extends Component {
   componentDidMount() {
-    // UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
-    //this.props.fetchAllSoupsInReact()
+    this.props.fetchAllSoupsInReact()
   }
 
   render() {
@@ -36,11 +34,12 @@ export class AllSoups extends Component {
       }
     ]
 
-    // EDIT BELOW RETURN SECTION TO USE REDUX STORE INSTEAD OF DUMMY DATA ONCE REDUX AND API SECTION IS COMPLETE
+    const soupsInReact = this.props.soups.soups
+
     return (
       <div>
         <h1>All Soups</h1>
-        {soups.map(soup => {
+        {soupsInReact.map(soup => {
           console.log(soup)
           const {id, name, price, ingredients, imageUrl} = soup
           return (
@@ -68,15 +67,13 @@ export class AllSoups extends Component {
 
 const mapStateToProps = state => {
   return {
-    // UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
-    //soups: state.soups
+    soups: state.soups
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    // UNCOMMENT BELOW LINE WHEN REDUX AND API ARE COMPLETE
-    //fetchAllSoupsInReact: () => dispatch(fetchAllSoups())
+    fetchAllSoupsInReact: () => dispatch(fetchAllSoups())
   }
 }
 
