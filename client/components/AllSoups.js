@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllSoups} from '../store/allSoups'
+import {Link} from 'react-router-dom'
 
 export class AllSoups extends Component {
   componentDidMount() {
@@ -20,14 +21,15 @@ export class AllSoups extends Component {
         <h1>All Soups</h1>
         {soupsInReact.map(soup => {
           console.log(soup)
-          const {id, name, price, ingredients, imageUrl} = soup
+          const {id, name, price, imageUrl} = soup
           return (
             <div key={id}>
-              <h2>
-                {name}: ${price} per can
-              </h2>
-              <h3>Ingredients</h3>
-              <img src={imageUrl} style={imageStyle} />
+              <Link to={`soups/${soup.id}`}>
+                <h2>
+                  {name}: ${price} per can
+                </h2>
+                <img src={imageUrl} style={imageStyle} />
+              </Link>
               <button type="submit">Add to Cart</button>
             </div>
           )
