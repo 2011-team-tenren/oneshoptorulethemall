@@ -20,7 +20,6 @@ export class AllSoups extends Component {
       <div>
         <h1>All Soups</h1>
         {soupsInReact.map(soup => {
-          console.log(soup)
           const {id, name, price, imageUrl} = soup
           return (
             <div key={id}>
