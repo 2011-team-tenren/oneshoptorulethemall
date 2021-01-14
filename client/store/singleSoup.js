@@ -10,7 +10,7 @@ const getSoup = soup => {
 export const fetchSoup = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`api/soups/${id}`)
+      const {data} = await axios.get(`/api/soups/${id}`)
       dispatch(getSoup(data))
     } catch (error) {
       console.error(error)
