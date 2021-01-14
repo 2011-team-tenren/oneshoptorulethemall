@@ -9,28 +9,38 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123', access: 'admin'})
+    User.create({email: 'murphy@email.com', password: '123', access: true})
   ])
 
   const soups = await Promise.all([
     Soup.create({
       name: 'Campbells Chicken Noodle Soup',
-      price: 6.0,
-      ingredients: ['chicken', 'noodles', 'broth'],
+      price: 600,
+      ingredient: 'chicken',
       quantity: 1000
     }),
     Soup.create({
       name: 'Vegetable Soup',
-      price: 6.0,
-      ingredients: ['onion', 'celary', 'beans', 'broth'],
+      price: 600,
+      ingredient: 'vegetable',
+      quantity: 1000
+    }),
+    Soup.create({
+      name: 'Kimchee Jigae',
+      price: 500,
+      ingredient: 'kimchee',
+      quantity: 1000
+    }),
+    Soup.create({
+      name: 'Cream of Broccoli',
+      price: 8000,
+      ingredient: 'broccoli',
       quantity: 1000
     })
   ])
 
   const [cody, murphy] = await User.findAll()
-  const [chicken, veggie] = await Soup.findAll()
-
-  await cody.addSoup(chicken, {through: {quantity: 5, price: 100}})
+  const [chicken, veggie, kimchee, broccoli] = await Soup.findAll()
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${soups.length} soups`)

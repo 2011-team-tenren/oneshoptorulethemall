@@ -5,14 +5,19 @@ const db = require('../db')
 const Soup = db.define('soup', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
-    type: Sequelize.FLOAT,
-    allowNull: false
+    //pennies in backend, price in dollars in front
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    min: 0
   },
-  ingredients: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+  flavor: {
+    type: Sequelize.STRING
   },
   imageUrl: {
     type: Sequelize.STRING,
