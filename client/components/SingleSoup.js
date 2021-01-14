@@ -26,17 +26,7 @@ export class SingleSoup extends Component {
         <h2>
           {soupInReact.name}: {soupInReact.price}
         </h2>
-        <h3>Ingredients</h3>
-        <ol>
-          {soupInReact.ingredients &&
-            soupInReact.ingredients.map(ingredient => {
-              return (
-                <li key={soupInReact.ingredients.indexOf(ingredient)}>
-                  {ingredient}
-                </li>
-              )
-            })}
-        </ol>
+        <h3>Flavor: {soupInReact.flavor}</h3>
         <img src={soupInReact.imageUrl} style={imageStyle} />
         <select name="qty" id="qty">
           <option value="1">1</option>
