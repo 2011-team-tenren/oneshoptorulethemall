@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {fetchAllSoups} from '../store/allSoups'
+import {fetchSoup} from '../store/singleSoup'
 
 export class SingleSoup extends Component {
   async componentDidMount() {
-    // try {
-    //   const soupId = this.props.match.params.soupId
-    //   await this.props.fetchSingleSoupInReact(soupId)
-    //   this.setState(this.props.singleSoup.singleSoup[0])
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try {
+      const soupId = this.props.match.params.soupId
+      await this.props.fetchSoupInReact(soupId)
+      this.setState(this.props.soup.soup[0])
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -19,23 +19,12 @@ export class SingleSoup extends Component {
       width: 'auto'
     }
 
-    // const soupsInReact = this.props.soups.soups
-    const singleSoup = [
-      {
-        id: 1,
-        name: 'Campbells Chicken Noodle Soup',
-        price: 6.0,
-        ingredients: ['chicken', 'noodles', 'broth'],
-        quantity: 1000,
-        imageUrl:
-          'https://www.campbellsoup.ca/wp-content/uploads/2020/04/Campbells_Warhol_040820-1-2048x1071.jpg'
-      }
-    ]
+    const soupsInReact = this.props.soups.soups
 
     return (
       <div>
         <h1>All Soups</h1>
-        {singleSoup.map(soup => {
+        {soupsInReact.map(soup => {
           console.log(soup)
           const {id, name, price, ingredients, imageUrl} = soup
           return (
@@ -95,13 +84,13 @@ export class SingleSoup extends Component {
 
 const mapStateToProps = state => {
   return {
-    // singleSoup: state.singleSoup,
+    soup: state.soup
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchSingleSoupInReact: (id) => dispatch(fetchSingleSoup(id)),
+    fetchSoupInReact: id => dispatch(fetchSoup(id))
   }
 }
 
