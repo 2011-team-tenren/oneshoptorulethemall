@@ -8,11 +8,11 @@ const Soup = db.define('soup', {
     allowNull: false
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
-  ingredients: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+  flavor: {
+    type: Sequelize.STRING
   },
   imageUrl: {
     type: Sequelize.STRING,
