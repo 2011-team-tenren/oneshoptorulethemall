@@ -7,7 +7,6 @@ export class SingleSoup extends Component {
     try {
       const soupId = this.props.match.params.soupId
       await this.props.fetchSoupInReact(soupId)
-      this.setState(this.props.soup.soup[0])
     } catch (err) {
       console.log(err)
     }
