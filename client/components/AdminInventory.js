@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchAllSoups} from '../store/allSoups'
 import {Link} from 'react-router-dom'
 
-export class Admin extends Component {
+export class AdminInventory extends Component {
   componentDidMount() {
     this.props.fetchAllSoupsInReact()
   }
@@ -18,17 +18,18 @@ export class Admin extends Component {
 
     return (
       <div>
-        <h1>All Soups</h1>
+        <h1>Soup Inventory</h1>
         {soupsInReact.map(soup => {
-          const {id, name, price, imageUrl} = soup
+          const {id, name, quantity, imageUrl} = soup
           return (
             <div key={id}>
               <Link to={`soups/${soup.id}`}>
                 <h2>
-                  {name}: ${price / 100} per can
+                  {name}: {quantity} cans in stock
                 </h2>
                 <img src={imageUrl} style={imageStyle} />
               </Link>
+              <button type="submit">Remove Soup From Stock</button>
             </div>
           )
         })}
@@ -49,4 +50,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminInventory)

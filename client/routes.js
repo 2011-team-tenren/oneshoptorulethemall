@@ -6,7 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import AllSoups from './components/AllSoups'
 import SingleSoup from './components/SingleSoup'
 import {me} from './store'
-import Admin from './components/Admin'
+import AdminInventory from './components/AdminInventory'
 
 /**
  * COMPONENT
@@ -18,8 +18,6 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn, isAdmin} = this.props
-
-    console.log(this.props)
 
     return (
       <Switch>
@@ -34,7 +32,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/soups" component={AllSoups} />
             <Route path="/soups/:soupId" component={SingleSoup} />
-            <Route path="/admin" component={Admin} />
+            <Route path="/admin" component={AdminInventory} />
           </Switch>
         )}
         {isAdmin && (
