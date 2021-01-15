@@ -39,6 +39,7 @@ export class SingleSoup extends Component {
 
     return (
       <div>
+        {this.props.isAdmin ? <h1>Edit Soup</h1> : null}
         <h2>
           {soupInReact.name}: ${soupInReact.price / 100}
         </h2>
@@ -80,20 +81,25 @@ export class SingleSoup extends Component {
           <option value="28">28</option>
           <option value="29">29</option>
           <option value="30">30</option>
+          <option value={soupInReact.quantity}>Empty Stock</option>
         </select>
-        <button
-          type="submit"
-          onClick={() => {
-            this.handleClick(
-              soupInReact.id,
-              this.props.userId,
-              this.state.quantity,
-              event
-            )
-          }}
-        >
-          Add to Cart
-        </button>
+        {this.props.isAdmin ? (
+          <button type="submit">Remove From Inventory</button>
+        ) : (
+          <button
+            type="submit"
+            onClick={() => {
+              this.handleClick(
+                soupInReact.id,
+                this.props.userId,
+                this.state.quantity,
+                event
+              )
+            }}
+          >
+            Add to Cart
+          </button>
+        )}
       </div>
     )
   }
@@ -102,7 +108,8 @@ export class SingleSoup extends Component {
 const mapStateToProps = state => {
   return {
     soup: state.soup,
-    userId: state.user.id
+    userId: state.user.id,
+    isAdmin: state.user.access
   }
 }
 
