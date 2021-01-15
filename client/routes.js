@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import AllSoups from './components/AllSoups'
 import SingleSoup from './components/SingleSoup'
+import UserCart from './components/UserCart'
 import {me} from './store'
 
 /**
@@ -31,6 +32,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/soups" component={AllSoups} />
             <Route path="/soups/:soupId" component={SingleSoup} />
+            <Route path="/user/:userId/cart" component={UserCart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
