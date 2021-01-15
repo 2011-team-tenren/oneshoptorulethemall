@@ -19,3 +19,16 @@ router.put('/:orderId/soups/:soupId', async (req, res, next) => {
     next(error)
   }
 })
+
+//removing soup from order
+router.delete('/:orderId/soups/:soupId', async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId)
+    const soup = await Soup.findByPk(req.params.soupId)
+
+    await order.removeSoup(soup)
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
