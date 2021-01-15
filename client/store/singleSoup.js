@@ -7,6 +7,21 @@ const getSoup = soup => {
   }
 }
 
+export const updateOrder = (soupId, userId, qty) => {
+  return async dispatch => {
+    try {
+      const user = await axios.get(`/api/users/${userId}`)
+
+      const {data} = await axios.put(
+        `/api/orders/${user.data.orders[0].id}/soups/${soupId}`,
+        {quantity: qty}
+      )
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 export const fetchSoup = id => {
   return async dispatch => {
     try {

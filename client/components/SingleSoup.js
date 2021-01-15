@@ -1,8 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSoup} from '../store/singleSoup'
+import {fetchSoup, updateOrder} from '../store/singleSoup'
 
 export class SingleSoup extends Component {
+  constructor() {
+    super()
+    this.state = {
+      quantity: 1
+    }
+    this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   async componentDidMount() {
     try {
       const soupId = this.props.match.params.soupId
@@ -10,6 +19,14 @@ export class SingleSoup extends Component {
     } catch (err) {
       console.log(err)
     }
+  }
+  async handleChange(event) {
+    await this.setState({quantity: event.target.value})
+  }
+
+  handleClick(soupId, userId, quantity, event) {
+    event.preventDefault()
+    this.props.addToOrder(soupId, userId, quantity)
   }
 
   render() {
@@ -27,7 +44,12 @@ export class SingleSoup extends Component {
         </h2>
         <h3>Flavor: {soupInReact.flavor}</h3>
         <img src={soupInReact.imageUrl} style={imageStyle} />
-        <select name="qty" id="qty">
+        <select
+          name="qty"
+          id="qty"
+          value={this.state.value}
+          onChange={this.handleChange}
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -59,7 +81,19 @@ export class SingleSoup extends Component {
           <option value="29">29</option>
           <option value="30">30</option>
         </select>
-        <button type="submit">Add to Cart</button>
+        <button
+          type="submit"
+          onClick={() => {
+            this.handleClick(
+              soupInReact.id,
+              this.props.userId,
+              this.state.quantity,
+              event
+            )
+          }}
+        >
+          Add to Cart
+        </button>
       </div>
     )
   }
@@ -67,13 +101,16 @@ export class SingleSoup extends Component {
 
 const mapStateToProps = state => {
   return {
-    soup: state.soup
+    soup: state.soup,
+    userId: state.user.id
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSoupInReact: id => dispatch(fetchSoup(id))
+    fetchSoupInReact: id => dispatch(fetchSoup(id)),
+    addToOrder: (soupId, userId, quantity) =>
+      dispatch(updateOrder(soupId, userId, quantity))
   }
 }
 

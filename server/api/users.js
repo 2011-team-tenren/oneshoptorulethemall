@@ -16,6 +16,25 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.params.userId
+      },
+      include: {
+        model: Order,
+        where: {
+          isCart: true
+        }
+      }
+    })
+    res.send(user)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //creating user order
 router.post('/:userId/order', async (req, res, next) => {
   try {
