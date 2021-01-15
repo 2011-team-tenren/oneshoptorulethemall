@@ -22,9 +22,8 @@ export class SingleSoup extends Component {
 
     return (
       <div>
-        <h1>All Soups</h1>
         <h2>
-          {soupInReact.name}: {soupInReact.price}
+          {soupInReact.name}: ${soupInReact.price / 100}
         </h2>
         <h3>Flavor: {soupInReact.flavor}</h3>
         <img src={soupInReact.imageUrl} style={imageStyle} />

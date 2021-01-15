@@ -25,7 +25,7 @@ export class AllSoups extends Component {
             <div key={id}>
               <Link to={`soups/${soup.id}`}>
                 <h2>
-                  {name}: ${price} per can
+                  {name}: ${price / 100} per can
                 </h2>
                 <img src={imageUrl} style={imageStyle} />
               </Link>
