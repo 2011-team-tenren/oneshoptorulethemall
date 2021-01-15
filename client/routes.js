@@ -6,7 +6,6 @@ import {Login, Signup, UserHome} from './components'
 import AllSoups from './components/AllSoups'
 import SingleSoup from './components/SingleSoup'
 import {me} from './store'
-import AdminInventory from './components/AdminInventory'
 
 /**
  * COMPONENT
@@ -27,15 +26,6 @@ class Routes extends Component {
         <Route exact path="/soups" component={AllSoups} />
         <Route path="/soups/:soupId" component={SingleSoup} />
         {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-            <Route exact path="/soups" component={AllSoups} />
-            <Route path="/soups/:soupId" component={SingleSoup} />
-            <Route path="/admin" component={AdminInventory} />
-          </Switch>
-        )}
-        {isAdmin && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />

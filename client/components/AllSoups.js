@@ -18,18 +18,22 @@ export class AllSoups extends Component {
 
     return (
       <div>
-        <h1>All Soups</h1>
+        {this.props.isAdmin ? <h1>Inventory</h1> : <h1>All Soups</h1>}
         {soupsInReact.map(soup => {
-          const {id, name, price, imageUrl} = soup
+          const {id, name, quantity, imageUrl} = soup
           return (
             <div key={id}>
               <Link to={`soups/${soup.id}`}>
                 <h2>
-                  {name}: ${price / 100} per can
+                  {name}: {quantity} cans in stock
                 </h2>
                 <img src={imageUrl} style={imageStyle} />
               </Link>
-              <button type="submit">Add to Cart</button>
+              {this.props.isAdmin ? (
+                <button type="submit">Remove Soup From Stock</button>
+              ) : (
+                <button type="submit">Add to Cart</button>
+              )}
             </div>
           )
         })}
@@ -40,7 +44,8 @@ export class AllSoups extends Component {
 
 const mapStateToProps = state => {
   return {
-    soups: state.soups
+    soups: state.soups,
+    isAdmin: state.user.access
   }
 }
 
