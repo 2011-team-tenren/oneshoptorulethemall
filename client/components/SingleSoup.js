@@ -47,8 +47,10 @@ export class SingleSoup extends Component {
         <img src={soupInReact.imageUrl} style={imageStyle} />
         {this.props.isAdmin ? (
           <div>
-            <imput />
-            <button type="submit">Edit Quantity</button>
+            <label htmlFor="editQty">Edit Quantity:</label>
+            <input type="number" id="editQty" name="editQty" />
+            <button type="submit">Submit</button>
+            <button type="submit">Remove Soup From Store</button>
           </div>
         ) : (
           <div>
