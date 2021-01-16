@@ -29,7 +29,6 @@ export class AllSoups extends Component {
                 </h2>
                 <img src={imageUrl} style={imageStyle} />
               </Link>
-              <button type="submit">Add to Cart</button>
             </div>
           )
         })}
