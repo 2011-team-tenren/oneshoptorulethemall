@@ -36,6 +36,17 @@ export const removeSoup = (soupId, orderId) => {
   }
 }
 
+export const checkoutUserCart = userId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/users/${userId}/checkout`)
+      await dispatch(setUserCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 const initialState = {
   usercart: {}
 }
