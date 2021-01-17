@@ -55,9 +55,7 @@ export class AllSoups extends Component {
                   >
                     Remove Soup From Stock
                   </button>
-                ) : (
-                  <button type="submit">Add to Cart</button>
-                )}
+                ) : null}
               </div>
             )
           })}

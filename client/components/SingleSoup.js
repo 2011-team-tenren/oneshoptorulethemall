@@ -36,9 +36,22 @@ export class SingleSoup extends Component {
     await this.setState({[event.target.name]: event.target.value})
   }
 
-  handleClick(soupId, userId, quantity, event) {
+  handleClick(soupId, userId, quantity, soup, flavor, event) {
     event.preventDefault()
-    this.props.addToOrder(soupId, userId, quantity)
+    if (this.props.userId) {
+      this.props.addToOrder(soupId, userId, quantity)
+    } else if (!localStorage.getItem('order')) {
+      let order = {}
+      let stringOrder = JSON.stringify(order)
+      localStorage.setItem('order', stringOrder)
+    } else {
+      let soupWQty = {...soup, orderQuantity: quantity}
+      let retrievedOrder = JSON.parse(localStorage.getItem('order'))
+      retrievedOrder = {...retrievedOrder, [flavor]: soupWQty}
+      console.log('order', retrievedOrder)
+      let stringOrder = JSON.stringify(retrievedOrder)
+      localStorage.setItem('order', stringOrder)
+    }
   }
 
   async handleEdit(evt) {
@@ -137,12 +150,25 @@ export class SingleSoup extends Component {
               <button
                 type="submit"
                 onClick={() => {
-                  this.handleClick(
-                    soupInReact.id,
-                    this.props.userId,
-                    this.state.quantity,
-                    event
-                  )
+                  if (this.props.userId) {
+                    this.handleClick(
+                      soupInReact.id,
+                      this.props.userId,
+                      this.state.quantity,
+                      null,
+                      null,
+                      event
+                    )
+                  } else {
+                    this.handleClick(
+                      null,
+                      null,
+                      this.state.quantity,
+                      soupInReact,
+                      soupInReact.flavor,
+                      event
+                    )
+                  }
                 }}
               >
                 Add to Cart

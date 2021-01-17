@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import AllSoups from './components/AllSoups'
 import SingleSoup from './components/SingleSoup'
+import UserCart from './components/UserCart'
+import {GuestCart} from './components/GuestCart'
 import {me} from './store'
 import AddNewSoup from './components/AddNewSoup'
 
@@ -26,6 +28,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/soups" component={AllSoups} />
         <Route path="/soups/:soupId" component={SingleSoup} />
+        <Route path="/guest/cart" component={GuestCart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -39,6 +42,11 @@ class Routes extends Component {
                 <Route exact path="/soups" component={AllSoups} />
                 <Route path="/soups/:soupId" component={SingleSoup} />
                 <Route path="/admin" component={AddNewSoup} />
+              </Switch>
+            )}
+            {!isAdmin && (
+              <Switch>
+                <Route path="/user/:userId/cart" component={UserCart} />
               </Switch>
             )}
           </Switch>
