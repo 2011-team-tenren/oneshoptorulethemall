@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchUserCart, removeSoup, checkoutUserCart} from '../store/userCart'
+
+import {
+  fetchUserCart,
+  removeSoup,
+  checkoutUserCart,
+  editQuantity
+} from '../store/userCart'
 import {Link} from 'react-router-dom'
 import UserConfirmation from './user-confirmation'
 import UserEmpty from './user-empty'
@@ -8,8 +14,11 @@ import UserEmpty from './user-empty'
 export class UserCart extends Component {
   constructor(props) {
     super(props)
+
     this.beforeCheckout = this.beforeCheckout.bind(this)
     this.afterCheckout = this.afterCheckout.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.removeSoup = this.removeSoup.bind(this)
     this.state = {
       //isCart: true,
       checkoutButtonClicked: true
@@ -30,8 +39,22 @@ export class UserCart extends Component {
     }
   }
 
-  removeSoup(soupId, orderId) {
-    this.props.removeSoupInReact(soupId, orderId)
+  async handleSubmit(event, soup_order) {
+    event.preventDefault()
+    let quantity = parseInt(event.target.quantity.value)
+    console.log(typeof quantity)
+    try {
+      !quantity
+        ? this.removeSoup(soup_order)
+        : this.props.editQuantityInReact(soup_order, quantity)
+      console.log()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  removeSoup(soup_order) {
+    this.props.removeSoupInReact(soup_order)
   }
 
   checkoutUserCart(userId) {
@@ -67,12 +90,24 @@ export class UserCart extends Component {
                   <h2>Total: ${soup_order.price / 100}</h2>
                   <img src={imageUrl} style={imageStyle} />
                 </Link>
-                <button
-                  type="submit"
-                  onClick={() =>
-                    this.removeSoup(soup_order.soupId, soup_order.orderId)
-                  }
-                >
+
+                <div>
+                  <div>Edit Quantity: </div>
+                  <form
+                    onSubmit={event => this.handleSubmit(event, soup_order)}
+                  >
+                    <label htmlFor="quantity" />
+                    <input
+                      type="number"
+                      min="0"
+                      max="30"
+                      name="quantity"
+                      defaultValue={soup_order.quantity}
+                    />
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
+                <button onClick={() => this.removeSoup(soup_order)}>
                   Remove
                 </button>
               </div>
@@ -105,9 +140,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchUserCartInReact: userId => dispatch(fetchUserCart(userId)),
-    removeSoupInReact: (soupId, orderId) =>
-      dispatch(removeSoup(soupId, orderId)),
-    checkoutUserCartInReact: userId => dispatch(checkoutUserCart(userId))
+
+    checkoutUserCartInReact: userId => dispatch(checkoutUserCart(userId)),
+    editQuantityInReact: (soup_order, quantity) =>
+      dispatch(editQuantity(soup_order, quantity)),
+    removeSoupInReact: soup_order => dispatch(removeSoup(soup_order))
   }
 }
 
