@@ -14,22 +14,10 @@ import UserEmpty from './user-empty'
 export class UserCart extends Component {
   constructor(props) {
     super(props)
-
-    this.beforeCheckout = this.beforeCheckout.bind(this)
-    this.afterCheckout = this.afterCheckout.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.removeSoup = this.removeSoup.bind(this)
-    this.state = {
-      //isCart: true,
-      checkoutButtonClicked: true
-    }
   }
-  beforeCheckout() {
-    this.setState = {isCart: true}
-  }
-  afterCheckout() {
-    this.setState = {isCart: false}
-  }
+
   async componentDidMount() {
     try {
       const userId = this.props.match.params.userId
@@ -57,9 +45,10 @@ export class UserCart extends Component {
     this.props.removeSoupInReact(soup_order)
   }
 
-  checkoutUserCart(userId) {
-    this.props.checkoutUserCartInReact(userId)
-    //this.setState = {checkoutButtonClicked: true}
+  async checkoutUserCart(userId) {
+    await this.props.checkoutUserCartInReact(userId)
+    await this.props.fetchUserCartInReact(userId)
+    alert(' Your order has been placed.  Please check your email')
   }
 
   render() {
@@ -121,11 +110,6 @@ export class UserCart extends Component {
         <button type="submit" onClick={() => this.checkoutUserCart(userId)}>
           Would You like to Checkout?
         </button>
-        {this.state.checkoutButtonClicked ? (
-          <div>
-            <UserConfirmation />
-          </div>
-        ) : null}
       </div>
     )
   }
