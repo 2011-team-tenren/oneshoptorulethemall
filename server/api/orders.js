@@ -32,3 +32,31 @@ router.delete('/:orderId/soups/:soupId', async (req, res, next) => {
     next(error)
   }
 })
+
+//editing soup in order
+router.put('/:orderId/soups/:soupId/quantity', async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId)
+    const soup = await Soup.findByPk(req.params.soupId)
+
+    await soup.setOrders(order, {
+      through: {
+        quantity: req.body.quantity,
+        price: soup.price * req.body.quantity
+      }
+    })
+
+    const editedOrder = await Order.findOne({
+      where: {
+        id: req.params.orderId,
+        isCart: true
+      },
+      include: {
+        model: Soup
+      }
+    })
+    res.json(editedOrder)
+  } catch (error) {
+    next(error)
+  }
+})
