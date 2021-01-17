@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchSoup, updateOrder} from '../store/singleSoup'
-import AdminForm from './AdminForm'
+import AdminForm from './AdminSingleSoupForm'
 
 export class SingleSoup extends Component {
   constructor() {

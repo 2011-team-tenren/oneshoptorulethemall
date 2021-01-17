@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import AllSoups from './components/AllSoups'
 import SingleSoup from './components/SingleSoup'
 import {me} from './store'
+import AddNewSoup from './components/AddNewSoup'
 
 /**
  * COMPONENT
@@ -31,6 +32,15 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/soups" component={AllSoups} />
             <Route path="/soups/:soupId" component={SingleSoup} />
+            {isAdmin && (
+              <Switch>
+                {/* Routes placed here are for Admin */}
+                <Route path="/home" component={UserHome} />
+                <Route exact path="/soups" component={AllSoups} />
+                <Route path="/soups/:soupId" component={SingleSoup} />
+                <Route path="/admin" component={AddNewSoup} />
+              </Switch>
+            )}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
