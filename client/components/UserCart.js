@@ -107,9 +107,11 @@ export class UserCart extends Component {
             <UserEmpty />
           </div>
         )}
-        <button type="submit" onClick={() => this.checkoutUserCart(userId)}>
-          Would You like to Checkout?
-        </button>
+        {userCart.soups && userCart.soups.length > 0 ? (
+          <button type="submit" onClick={() => this.checkoutUserCart(userId)}>
+            Would You like to Checkout?
+          </button>
+        ) : null}
       </div>
     )
   }
