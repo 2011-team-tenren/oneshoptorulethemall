@@ -8,6 +8,7 @@ import SingleSoup from './components/SingleSoup'
 import UserCart from './components/UserCart'
 import {GuestCart} from './components/GuestCart'
 import {me} from './store'
+import AddNewSoup from './components/AddNewSoup'
 
 /**
  * COMPONENT
@@ -18,7 +19,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     return (
       <Switch>
@@ -34,7 +35,20 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/soups" component={AllSoups} />
             <Route path="/soups/:soupId" component={SingleSoup} />
-            <Route path="/user/:userId/cart" component={UserCart} />
+            {isAdmin && (
+              <Switch>
+                {/* Routes placed here are for Admin */}
+                <Route path="/home" component={UserHome} />
+                <Route exact path="/soups" component={AllSoups} />
+                <Route path="/soups/:soupId" component={SingleSoup} />
+                <Route path="/admin" component={AddNewSoup} />
+              </Switch>
+            )}
+            {!isAdmin && (
+              <Switch>
+                <Route path="/user/:userId/cart" component={UserCart} />
+              </Switch>
+            )}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -51,7 +65,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.access
   }
 }
 
