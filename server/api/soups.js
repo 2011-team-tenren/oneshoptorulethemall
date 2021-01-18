@@ -11,6 +11,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const {name, price, quantity, flavor, imageUrl} = req.body
+    let newSoup = await Soup.create({name, price, quantity, flavor, imageUrl})
+    res.status(201).send(newSoup)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:soupId', async (req, res, next) => {
   try {
     const soup = await Soup.findByPk(req.params.soupId)

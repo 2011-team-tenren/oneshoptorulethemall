@@ -1,48 +1,48 @@
 import React from 'react'
 
-export default function AdminNewSoupForm() {
+export default function AdminNewSoupForm(props) {
   return (
     <div>
-      <form>
-        <label htmlFor="newName">Name:</label>
+      <form onSubmit={props.handleSubmit}>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
-          id="newName"
-          name="newName"
-          // value={props.editQty}
-          // onChange={props.handleChange}
+          id="name"
+          name="name"
+          value={props.name}
+          onChange={props.handleChange}
         />
-        <label htmlFor="newFlavor">Flavor:</label>
+        <label htmlFor="flavor">Flavor:</label>
         <input
           type="text"
-          id="newFlavor"
-          name="newFlavor"
-          // value={props.editPrice}
-          // onChange={props.handleChange}
+          id="flavor"
+          name="flavor"
+          value={props.flavor}
+          onChange={props.handleChange}
         />
-        <label htmlFor="newQty">Quantity:</label>
+        <label htmlFor="quantity">Quantity:</label>
         <input
           type="number"
-          id="newQty"
-          name="newQty"
-          // value={props.editQty}
-          // onChange={props.handleChange}
+          id="quantity"
+          name="quantity"
+          value={props.quantity}
+          onChange={props.handleChange}
         />
-        <label htmlFor="newPrice">Price:</label>
+        <label htmlFor="price">Price:</label>
         <input
           type="number"
-          id="newPrice"
-          name="newPrice"
-          // value={props.editPrice}
-          // onChange={props.handleChange}
+          id="price"
+          name="price"
+          value={props.price}
+          onChange={props.handleChange}
         />
-        <label htmlFor="newImageUrl">ImageUrl:</label>
+        <label htmlFor="imageUrl">ImageUrl:</label>
         <input
           type="text"
-          id="newImageUrl"
-          name="newImageUrl"
-          // value={props.editPrice}
-          // onChange={props.handleChange}
+          id="imageUrl"
+          name="imageUrl"
+          value={props.imageUrl}
+          onChange={props.handleChange}
         />
         <button type="submit">Submit</button>
       </form>
