@@ -53,6 +53,7 @@ export class GuestCart extends Component {
       height: '20rem',
       width: 'auto'
     }
+    console.log('guest cart', this.state.cart)
     return (
       <div>
         {this.state.cart.map((soup, idx) => {
