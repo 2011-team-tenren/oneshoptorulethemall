@@ -27,8 +27,7 @@ async function seed() {
     })
   ])
 
-  const [cody, murphy] = await User.findAll()
-  const [chicken, veggie] = await Soup.findAll()
+  const [cody] = await User.findAll()
 
   const order = await Order.create()
   await cody.addOrder(order)
