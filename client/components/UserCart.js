@@ -8,7 +8,6 @@ import {
   editQuantity
 } from '../store/userCart'
 import {Link} from 'react-router-dom'
-import UserConfirmation from './user-confirmation'
 import UserEmpty from './user-empty'
 
 export class UserCart extends Component {
@@ -27,7 +26,7 @@ export class UserCart extends Component {
     }
   }
 
-  async handleSubmit(event, soup_order) {
+  handleSubmit(event, soup_order) {
     event.preventDefault()
     let quantity = parseInt(event.target.quantity.value)
     console.log(typeof quantity)
@@ -35,7 +34,6 @@ export class UserCart extends Component {
       !quantity
         ? this.removeSoup(soup_order)
         : this.props.editQuantityInReact(soup_order, quantity)
-      console.log()
     } catch (err) {
       console.log(err)
     }
@@ -56,13 +54,7 @@ export class UserCart extends Component {
       height: '20rem',
       width: 'auto'
     }
-    //console.log('is the cart full?', userCart.soups.length)
 
-    //const isCart = this.state.isCart
-
-    //  there are three differnt scenarios to this component.  1.empty cart "Please check out our All Soups"
-    // 2. before checkout Lists all soups in cart and has a checkout button.  3. After Checkout renders user-confirmation
-    //4. if the user goes back to myCart, a fresh empty cart is available.
     const userCart = this.props.usercart
     const userId = this.props.match.params.userId
     return (
@@ -79,7 +71,6 @@ export class UserCart extends Component {
                   <h2>Total: ${soup_order.price / 100}</h2>
                   <img src={imageUrl} style={imageStyle} />
                 </Link>
-
                 <div>
                   <div>Edit Quantity: </div>
                   <form

@@ -1,8 +1,31 @@
 const router = require('express').Router()
 const {User, Order, Soup} = require('../db/models')
 module.exports = router
+module.exports.isSameUser = isSameUser
+module.exports.isUserAdmin = isUserAdmin
 
-router.get('/', async (req, res, next) => {
+//gatekeeping middleware
+function isSameUser(req, res, next) {
+  if (req.user.id !== Number(req.params.userId)) {
+    console.log('requserid', req.user.id)
+    console.log('reqparamns.userId', req.params.userId)
+
+    res.sendStatus(401)
+
+    return
+  }
+  next()
+}
+
+function isUserAdmin(req, res, next) {
+  if (!req.user.access) {
+    res.sendStatus(401)
+    return
+  }
+  next()
+}
+
+router.get('/', isSameUser, isUserAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -16,7 +39,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId', isSameUser, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
@@ -36,7 +59,7 @@ router.get('/:userId', async (req, res, next) => {
 })
 
 //creating user order
-router.post('/:userId/order', async (req, res, next) => {
+router.post('/:userId/order', isSameUser, async (req, res, next) => {
   try {
     const order = await Order.create({
       userId: req.params.userId
@@ -48,7 +71,7 @@ router.post('/:userId/order', async (req, res, next) => {
 })
 
 //get cart items
-router.get('/:userId/order', async (req, res, next) => {
+router.get('/:userId/order', isSameUser, async (req, res, next) => {
   try {
     const order = await Order.findOne({
       where: {
@@ -66,7 +89,7 @@ router.get('/:userId/order', async (req, res, next) => {
 })
 
 //checkout
-router.put('/:userId/checkout', async (req, res, next) => {
+router.put('/:userId/checkout', isSameUser, async (req, res, next) => {
   try {
     const order = await Order.findOne({
       where: {
