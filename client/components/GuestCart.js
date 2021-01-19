@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 
-let retrievedOrder = JSON.parse(localStorage.getItem('order'))
-let order = Object.values(retrievedOrder)
-
+// let retrievedOrder = JSON.parse(localStorage.getItem('order'))
+// let order = Object.values(retrievedOrder)
 export class GuestCart extends Component {
   constructor() {
     super()
     this.state = {
       qty: 0,
-      cart: order
+      cart: Object.values(JSON.parse(localStorage.getItem('order')))
     }
     this.editQtyClick = this.editQtyClick.bind(this)
     this.editQtyChange = this.editQtyChange.bind(this)
@@ -18,7 +17,7 @@ export class GuestCart extends Component {
   async editQtyClick(soup, evt) {
     evt.preventDefault()
     let updatedOrder = {}
-    let orderArr = order.map(currentSoup => {
+    let orderArr = this.state.cart.map(currentSoup => {
       if (currentSoup.id === soup.id) {
         currentSoup.orderQuantity = this.state.qty
       }
@@ -32,16 +31,14 @@ export class GuestCart extends Component {
   async removeSoupClick(soup, evt) {
     evt.preventDefault()
     let updatedOrder = {}
-    let orderArr = order.filter(currentSoup => {
+    let orderArr = this.state.cart.filter(currentSoup => {
       if (currentSoup.id !== soup.id) {
         updatedOrder[currentSoup.flavor] = currentSoup
         return currentSoup
       }
     })
-    console.log(updatedOrder)
     await this.setState({cart: orderArr})
     localStorage.setItem('order', JSON.stringify({...updatedOrder}))
-    console.log(localStorage)
   }
 
   editQtyChange(event) {
@@ -53,7 +50,6 @@ export class GuestCart extends Component {
       height: '20rem',
       width: 'auto'
     }
-    console.log('guest cart', this.state.cart)
     return (
       <div>
         {this.state.cart.map((soup, idx) => {

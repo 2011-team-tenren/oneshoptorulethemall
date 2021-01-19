@@ -48,7 +48,7 @@ export class SingleSoup extends Component {
       let soupWQty = {...soup, orderQuantity: quantity}
       let retrievedOrder = JSON.parse(localStorage.getItem('order'))
       retrievedOrder = {...retrievedOrder, [flavor]: soupWQty}
-      console.log('order', retrievedOrder)
+      console.log('retrieved order after addingtocart', retrievedOrder)
       let stringOrder = JSON.stringify(retrievedOrder)
       localStorage.setItem('order', stringOrder)
     }
