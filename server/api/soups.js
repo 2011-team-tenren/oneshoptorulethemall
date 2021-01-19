@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Soup} = require('../db/models')
+const {isUserAdmin} = require('./users')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -11,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isUserAdmin, async (req, res, next) => {
   try {
     const {name, price, quantity, flavor, imageUrl} = req.body
     let newSoup = await Soup.create({name, price, quantity, flavor, imageUrl})
@@ -30,7 +31,7 @@ router.get('/:soupId', async (req, res, next) => {
   }
 })
 
-router.put('/:soupId', async (req, res, next) => {
+router.put('/:soupId', isUserAdmin, async (req, res, next) => {
   try {
     const soup = await Soup.findByPk(req.params.soupId)
     await soup.update(req.body)
@@ -40,7 +41,7 @@ router.put('/:soupId', async (req, res, next) => {
   }
 })
 
-router.delete('/:soupId', async (req, res, next) => {
+router.delete('/:soupId', isUserAdmin, async (req, res, next) => {
   try {
     const soup = await Soup.findByPk(req.params.soupId)
     await soup.destroy()
