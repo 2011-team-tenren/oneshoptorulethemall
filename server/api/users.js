@@ -25,7 +25,7 @@ function isUserAdmin(req, res, next) {
   next()
 }
 
-router.get('/', isSameUser, isUserAdmin, async (req, res, next) => {
+router.get('/', isUserAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
