@@ -3,17 +3,6 @@ const {Order, Soup} = require('../db/models')
 //const {isSameUser} = require('./users')
 module.exports = router
 
-router.post('/guest/checkout', async (req, res, next) => {
-  try {
-    const order = await Order.create({
-      isCart: false
-    })
-    res.send(order)
-  } catch (err) {
-    next(err)
-  }
-})
-
 //adding soup to order
 router.put('/:orderId/soups/:soupId', async (req, res, next) => {
   try {
