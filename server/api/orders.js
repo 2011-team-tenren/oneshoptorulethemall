@@ -21,10 +21,6 @@ router.get('/user/:userId', async (req, res, next) => {
       where: {userId, isCart: false},
       include: Soup
     })
-    let soups = []
-    orderHistory.map(order => {
-      soups.push(order.soups)
-    })
     res.send(orderHistory)
   } catch (err) {
     next(err)

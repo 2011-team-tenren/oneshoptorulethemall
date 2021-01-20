@@ -10,6 +10,7 @@ import {GuestCart} from './components/GuestCart'
 import {me} from './store'
 import AddNewSoup from './components/AddNewSoup'
 import AdminAllUsers from './components/AdminAllUsers'
+import {OrderHistory} from './components/OrderHistory'
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/soups" component={AllSoups} />
             <Route path="/soups/:soupId" component={SingleSoup} />
+            <Route path="/orderhistory/:userId" component={OrderHistory} />
             {isAdmin && (
               <Switch>
                 {/* Routes placed here are for Admin */}
