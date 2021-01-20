@@ -9,6 +9,7 @@ import UserCart from './components/UserCart'
 import {GuestCart} from './components/GuestCart'
 import {me} from './store'
 import AddNewSoup from './components/AddNewSoup'
+import AdminAllUsers from './components/AdminAllUsers'
 
 /**
  * COMPONENT
@@ -42,6 +43,7 @@ class Routes extends Component {
                 <Route exact path="/soups" component={AllSoups} />
                 <Route path="/soups/:soupId" component={SingleSoup} />
                 <Route path="/admin" component={AddNewSoup} />
+                <Route path="/adminuser" component={AdminAllUsers} />
               </Switch>
             )}
             {!isAdmin && (
