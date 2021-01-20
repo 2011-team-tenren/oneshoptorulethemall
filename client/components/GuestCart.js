@@ -107,11 +107,12 @@ export class GuestCart extends Component {
                     <div>
                       Remove {soup.flavor} soups:{' '}
                       <button
+                        className="remove"
                         type="submit"
                         onClick={() => this.removeSoupClick(soup, event)}
                       >
                         {' '}
-                        X{' '}
+                        Remove{' '}
                       </button>
                     </div>
                   </form>
@@ -125,6 +126,7 @@ export class GuestCart extends Component {
             })}
             <div>
               <button
+                className="checkout"
                 type="submit"
                 onClick={event => this.checkoutClick(event, cart)}
               >

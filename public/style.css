@@ -35,15 +35,22 @@ form div {
   display: inline-block;
 }
 
-/* #nav-bar {
-  background-image: url('https://www.lecreuset.co.za/blog/wp-content/uploads/2017/06/Header.jpg');
+#nav-bar {
   height: 10rem;
   background-repeat: no-repeat;
   background-size: cover;
-} */
+}
+
+h1 {
+  border-bottom: 5px;
+}
 
 h2 {
   border-bottom: 5px;
+}
+
+div h1 {
+  text-align: center;
 }
 
 .allSoups {
@@ -63,18 +70,29 @@ h2 {
   display: flex;
   flex-direction: row;
   align-content: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
-soup-item {
-  align-content: center;
-  justify-content: center;
-}
-
-.soup-grid {
-  display: grid;
-  grid-area: span;
+.soup-item {
+  /* flex: wrap; */
   align-items: center;
-  justify-content: center;
-  grid-template-columns: 450px 450px 450px 450px;
+  justify-items: center;
+  flex-wrap: wrap;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+.remove {
+  background-color: rgb(238, 116, 116);
+}
+
+.checkout {
+  background-color: rgb(47, 165, 47);
+  display: inline-block;
+  align-self: center;
 }
