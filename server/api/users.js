@@ -9,7 +9,6 @@ function isSameUser(req, res, next) {
   if (req.user.id !== Number(req.params.userId)) {
     console.log('requserid', req.user.id)
     console.log('reqparamns.userId', req.params.userId)
-
     res.sendStatus(401)
 
     return
@@ -18,6 +17,7 @@ function isSameUser(req, res, next) {
 }
 
 function isUserAdmin(req, res, next) {
+  console.log(req.user.access)
   if (!req.user.access) {
     res.sendStatus(401)
     return
@@ -25,7 +25,7 @@ function isUserAdmin(req, res, next) {
   next()
 }
 
-router.get('/', isSameUser, isUserAdmin, async (req, res, next) => {
+router.get('/', isUserAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
