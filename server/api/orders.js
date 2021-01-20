@@ -2,6 +2,17 @@ const router = require('express').Router()
 const {Order, Soup, SoupOrder} = require('../db/models')
 module.exports = router
 
+router.post('/guest/checkout', async (req, res, next) => {
+  try {
+    const order = await Order.create({
+      isCart: false
+    })
+    res.send(order)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //adding soup to order
 router.put('/:orderId/soups/:soupId', async (req, res, next) => {
   try {
