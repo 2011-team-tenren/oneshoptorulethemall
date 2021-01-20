@@ -3,6 +3,34 @@ const {Order, Soup} = require('../db/models')
 //const {isSameUser} = require('./users')
 module.exports = router
 
+// Admin can see full order info, including soups
+router.get('/', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({include: Soup})
+    res.send(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// ONLY past Orders (isCart: false)
+router.get('/user/:userId', async (req, res, next) => {
+  try {
+    const userId = req.params.userId
+    const orderHistory = await Order.findAll({
+      where: {userId, isCart: false},
+      include: Soup
+    })
+    let soups = []
+    orderHistory.map(order => {
+      soups.push(order.soups)
+    })
+    res.send(orderHistory)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/guest/checkout', async (req, res, next) => {
   try {
     const order = await Order.create({
