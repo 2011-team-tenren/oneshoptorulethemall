@@ -61,6 +61,7 @@ export class AllSoups extends Component {
               <option value="Jjigae">Jjigae</option>
               <option value="Beef">Beef</option>
               <option value="Ramen">Ramen</option>
+              <option value="Seafood">Seafood</option>
             </select>
           </div>
           {soupsInReact.filter(this.whichFlavor).map(soup => {
