@@ -46,7 +46,7 @@ export class UserCart extends Component {
   async checkoutUserCart(userId) {
     await this.props.checkoutUserCartInReact(userId)
     await this.props.fetchUserCartInReact(userId)
-    alert(' Your order has been placed.  Please check your email')
+    alert(' Your order has been placed.  Please check your email.')
   }
 
   render() {
