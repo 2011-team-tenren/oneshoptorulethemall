@@ -19,49 +19,47 @@ export class OrderHistory extends Component {
     } catch (err) {
       console.log(err)
     }
-
-    // this.props.fetchOrderHistoryInReact(userId)
-    // console.log(store.getState())
-    // console.log(this.state.orderHistory)
   }
 
   render() {
-    const imageStyle = {
-      height: '10rem',
-      width: 'auto'
-    }
-
     const orderHistory = this.state.orderHistory
     return (
       <div>
         <h1>Your Order History:</h1>
-        {orderHistory &&
-          orderHistory.map(order => {
-            let orderTotal = 0
-            return (
-              <div key={order.id}>
-                <h2>Order #{order.id + 1}</h2>
-                <ol>
-                  {order.soups.map(soup => {
-                    orderTotal += soup.soup_order.price
-                    return (
-                      <div key={order.soups.indexOf(soup)}>
-                        <Link to={`/soups/${soup.id}`}>
-                          <li>
-                            <p>
-                              {soup.name}: {soup.soup_order.quantity} units
-                            </p>
-                            <img src={soup.imageUrl} style={imageStyle} />
-                          </li>
-                        </Link>
-                      </div>
-                    )
-                  })}
-                </ol>
-                <h3>Order Total: ${orderTotal / 100}</h3>
-              </div>
-            )
-          })}
+        <section className="history-container">
+          {orderHistory &&
+            orderHistory.map(order => {
+              let orderTotal = 0
+              return (
+                <div key={order.id}>
+                  <h2>Order #{order.id + 1}</h2>
+                  <div>
+                    <ol className="order-item">
+                      {order.soups.map(soup => {
+                        orderTotal += soup.soup_order.price
+                        return (
+                          <div
+                            key={order.soups.indexOf(soup)}
+                            className="order-soup"
+                          >
+                            <Link to={`/soups/${soup.id}`}>
+                              <li>
+                                <p>
+                                  {soup.name}: {soup.soup_order.quantity} units
+                                </p>
+                                <img src={soup.imageUrl} className="orderImg" />
+                              </li>
+                            </Link>
+                          </div>
+                        )
+                      })}
+                    </ol>
+                    <h3 className="total">Order Total: ${orderTotal / 100}</h3>
+                  </div>
+                </div>
+              )
+            })}
+        </section>
         {orderHistory.length === 0 ? (
           <Link to="/soups">
             <h1>Make your first order!</h1>

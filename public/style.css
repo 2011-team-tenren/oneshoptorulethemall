@@ -154,3 +154,44 @@ div h1 {
 table {
   border: grey;
 }
+
+.history-container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+}
+
+.order-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-style: hidden;
+  text-align: center;
+  text-size-adjust: 2;
+  background-color: rgb(225, 224, 224, 0.2);
+  /* flex-wrap: wrap; */
+  /* margin: 0% 30% 5%; */
+}
+
+.order-soup {
+  width: 30%;
+  height: 30%;
+  border-style: hidden;
+  text-align: center;
+  justify-items: center;
+  align-content: center;
+  margin: 0 3% 0%;
+}
+
+.orderImg {
+  height: 30%;
+  width: 20%;
+  border-radius: 50%;
+}
+
+.total {
+  display: flex;
+  justify-content: center;
+}
