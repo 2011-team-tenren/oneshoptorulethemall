@@ -52,8 +52,8 @@ export class AllSoups extends Component {
       return (
         <div>
           {this.props.isAdmin ? <h1>Inventory</h1> : <h1>All Soups</h1>}
-          <div>
-            <span>Flavor: </span>
+          <div id="flavor">
+            <span> Flavor: </span>
             <select value={this.state.flavor} onChange={this.selectFlavor}>
               <option value="All">All</option>
               <option value="Chicken">Chicken</option>
@@ -70,12 +70,7 @@ export class AllSoups extends Component {
               return (
                 <div key={id} className="soup-item">
                   <Link to={`soups/${soup.id}`}>
-                    <h2>
-                      {name}{' '}
-                      {this.props.isAdmin
-                        ? (':', quantity, 'cans in stock')
-                        : null}
-                    </h2>
+                    <h2>{name}</h2>
                     <img src={imageUrl} className="allSoups" />
                   </Link>
                   {this.props.isAdmin ? (
