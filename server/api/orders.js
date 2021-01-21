@@ -1,7 +1,31 @@
 const router = require('express').Router()
 const {Order, Soup} = require('../db/models')
-//const {isSameUser} = require('./users')
+const {isSameUser, isUserAdmin} = require('./users')
 module.exports = router
+
+// Admin can see full order info, including soups
+router.get('/', isUserAdmin, async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({include: Soup})
+    res.send(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// ONLY past Orders (isCart: false)
+router.get('/user/:userId', isSameUser, async (req, res, next) => {
+  try {
+    const userId = req.params.userId
+    const orderHistory = await Order.findAll({
+      where: {userId, isCart: false},
+      include: Soup
+    })
+    res.send(orderHistory)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.post('/guest/checkout', async (req, res, next) => {
   try {

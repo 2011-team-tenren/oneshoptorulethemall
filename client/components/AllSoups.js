@@ -71,7 +71,10 @@ export class AllSoups extends Component {
                 <div key={id} className="soup-item">
                   <Link to={`soups/${soup.id}`}>
                     <h2>
-                      {name}: {quantity} cans in stock
+                      {name}{' '}
+                      {this.props.isAdmin
+                        ? (':', quantity, 'cans in stock')
+                        : null}
                     </h2>
                     <img src={imageUrl} className="allSoups" />
                   </Link>
