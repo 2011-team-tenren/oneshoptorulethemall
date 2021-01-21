@@ -4,13 +4,6 @@
 
 body {
   font-family: 'Helvetica', Times New Roman, serif;
-  background: radial-gradient(
-    circle,
-    rgba(182, 210, 188, 1) 0%,
-    rgba(177, 175, 186, 1) 44%,
-    rgba(195, 189, 246, 1) 80%,
-    rgba(222, 222, 221, 1) 100%
-  );
   background-image: url('https://lh3.googleusercontent.com/MNSxMl5ydVa5KC4Sdn27sM5W1Ziyg02CcAEvoto2dAYlFBXNffP4jnmlkLgw4Q9PRcx0xu2qM_T7CWkyeTeRn_Yp-fysw82WoFf6_cEa5YenLibE9WlgxUUd8fW9dMsvqHWarTZKwA=w2400');
   background-size: contain;
   /* height: 150vh; */
