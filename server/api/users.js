@@ -73,7 +73,7 @@ router.post('/:userId/order', isSameUser, async (req, res, next) => {
 //get cart items
 router.get('/:userId/order', isSameUser, async (req, res, next) => {
   try {
-    const order = await Order.findOne({
+    const [order] = await Order.findOrCreate({
       where: {
         userId: req.params.userId,
         isCart: true
