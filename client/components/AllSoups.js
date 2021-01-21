@@ -41,10 +41,10 @@ export class AllSoups extends Component {
   }
 
   render() {
-    const imageStyle = {
-      height: '20rem',
-      width: 'auto'
-    }
+    // const imageStyle = {
+    //   height: '20rem',
+    //   width: 'auto',
+    // }
 
     const soupsInReact = this.props.soups.soups
 
@@ -61,30 +61,36 @@ export class AllSoups extends Component {
               <option value="Jjigae">Jjigae</option>
               <option value="Beef">Beef</option>
               <option value="Ramen">Ramen</option>
+              <option value="Seafood">Seafood</option>
             </select>
           </div>
-          {soupsInReact.filter(this.whichFlavor).map(soup => {
-            const {id, name, quantity, imageUrl} = soup
-            return (
-              <div key={id}>
-                <Link to={`soups/${soup.id}`}>
-                  <h2>
-                    {name}: {quantity} cans in stock
-                  </h2>
-                  <img src={imageUrl} style={imageStyle} />
-                </Link>
-                {this.props.isAdmin ? (
-                  <button
-                    type="submit"
-                    name={soup.id}
-                    onClick={this.removeSoup}
-                  >
-                    Remove Soup From Stock
-                  </button>
-                ) : null}
-              </div>
-            )
-          })}
+          <section className="soup-container">
+            {soupsInReact.filter(this.whichFlavor).map(soup => {
+              const {id, name, quantity, imageUrl} = soup
+              return (
+                <div key={id} className="soup-item">
+                  <Link to={`soups/${soup.id}`}>
+                    <h2>
+                      {name}{' '}
+                      {this.props.isAdmin
+                        ? (':', quantity, 'cans in stock')
+                        : null}
+                    </h2>
+                    <img src={imageUrl} className="allSoups" />
+                  </Link>
+                  {this.props.isAdmin ? (
+                    <button
+                      type="submit"
+                      name={soup.id}
+                      onClick={this.removeSoup}
+                    >
+                      Remove Soup From Stock
+                    </button>
+                  ) : null}
+                </div>
+              )
+            })}
+          </section>
         </div>
       )
     } else {

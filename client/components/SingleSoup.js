@@ -148,6 +148,10 @@ export class SingleSoup extends Component {
               </select>
 
               <button
+                className="addToCart"
+                size="small"
+                variant="contained"
+                color="secondary"
                 type="submit"
                 onClick={() => {
                   if (this.props.userId) {

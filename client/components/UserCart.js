@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
 import {
   fetchUserCart,
   removeSoup,
@@ -60,46 +59,55 @@ export class UserCart extends Component {
     return (
       <div>
         <h1>Soups in my Cart</h1>
-        {userCart.soups && userCart.soups.length ? (
-          userCart.soups.map(soup => {
-            const {id, name, imageUrl, soup_order} = soup
-            return (
-              <div key={id}>
-                <Link to={`soups/${id}`}>
-                  <h2>Name: {name}</h2>
-                  <h2>Quantity: {soup_order.quantity}</h2>
-                  <h2>Total: ${soup_order.price / 100}</h2>
-                  <img src={imageUrl} style={imageStyle} />
-                </Link>
-                <div>
-                  <div>Edit Quantity: </div>
-                  <form
-                    onSubmit={event => this.handleSubmit(event, soup_order)}
+        <section className="cart-container">
+          {userCart.soups && userCart.soups.length ? (
+            userCart.soups.map(soup => {
+              const {id, name, imageUrl, soup_order} = soup
+              return (
+                <div key={id}>
+                  <Link to={`soups/${id}`}>
+                    <h2>Name: {name}</h2>
+                    <h2>Quantity: {soup_order.quantity}</h2>
+                    <h2>Total: ${soup_order.price / 100}</h2>
+                    <img src={imageUrl} style={imageStyle} />
+                  </Link>
+                  <div>
+                    <div>Edit Quantity: </div>
+                    <form
+                      onSubmit={event => this.handleSubmit(event, soup_order)}
+                    >
+                      <label htmlFor="quantity" />
+                      <input
+                        type="number"
+                        min="0"
+                        max="30"
+                        name="quantity"
+                        defaultValue={soup_order.quantity}
+                      />
+                      <button type="submit">Submit</button>
+                    </form>
+                  </div>
+                  <button
+                    className="remove"
+                    onClick={() => this.removeSoup(soup_order)}
                   >
-                    <label htmlFor="quantity" />
-                    <input
-                      type="number"
-                      min="0"
-                      max="30"
-                      name="quantity"
-                      defaultValue={soup_order.quantity}
-                    />
-                    <button type="submit">Submit</button>
-                  </form>
+                    Remove
+                  </button>
                 </div>
-                <button onClick={() => this.removeSoup(soup_order)}>
-                  Remove
-                </button>
-              </div>
-            )
-          })
-        ) : (
-          <div>
-            <UserEmpty />
-          </div>
-        )}
+              )
+            })
+          ) : (
+            <div>
+              <UserEmpty />
+            </div>
+          )}
+        </section>
         {userCart.soups && userCart.soups.length > 0 ? (
-          <button type="submit" onClick={() => this.checkoutUserCart(userId)}>
+          <button
+            className="checkout"
+            type="submit"
+            onClick={() => this.checkoutUserCart(userId)}
+          >
             Would You like to Checkout?
           </button>
         ) : null}
