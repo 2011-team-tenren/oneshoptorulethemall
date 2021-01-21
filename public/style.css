@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Helvetica', Times New Roman, serif;
   background: radial-gradient(
     circle,
     rgba(182, 210, 188, 1) 0%,
@@ -11,8 +11,9 @@ body {
     rgba(195, 189, 246, 1) 80%,
     rgba(222, 222, 221, 1) 100%
   );
-  /* background-image: url('https://images.unsplash.com/photo-1610867725300-c1c7b39529de?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80');
-  height: 150vh; */
+  background-image: url('https://lh3.googleusercontent.com/MNSxMl5ydVa5KC4Sdn27sM5W1Ziyg02CcAEvoto2dAYlFBXNffP4jnmlkLgw4Q9PRcx0xu2qM_T7CWkyeTeRn_Yp-fysw82WoFf6_cEa5YenLibE9WlgxUUd8fW9dMsvqHWarTZKwA=w2400');
+  background-size: contain;
+  /* height: 150vh; */
   padding: 10;
   margin: 30;
   width: 100vw;
@@ -47,16 +48,33 @@ form div {
 }
 
 h1 {
+  font-size: 2em;
   border-bottom: 5px;
+  color: crimson;
 }
 
 h2 {
-  color: black;
   border-bottom: 5px;
 }
 
 div h1 {
   text-align: center;
+}
+
+#flavor {
+  text-align: center;
+}
+
+.links {
+  color: black;
+  font-size: 1.25em;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.authform {
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .allSoups {

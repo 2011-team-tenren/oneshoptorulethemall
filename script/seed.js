@@ -129,7 +129,7 @@ async function seed() {
       price: 600,
       flavor: 'Jjigae',
       imageUrl:
-        'https://futuredish.com/wp-content/uploads/2020/04/Soondubu-Hero-Image-3.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/b/bb/Korean.food-Sundubu.jjigae-01a.jpg',
       quantity: 1000
     }),
     Soup.create({
@@ -162,6 +162,22 @@ async function seed() {
       flavor: 'Chicken',
       imageUrl:
         'https://www.thespruceeats.com/thmb/JsrBfcRWo_prC4pEsrkt8FDxxQY=/1500x1500/smart/filters:no_upscale()/ProgressoChickenNoodleSoup-738c1f399b8a476d9522560dc487bb01.jpg',
+      quantity: 1000
+    }),
+    Soup.create({
+      name: 'Budae',
+      price: 600,
+      flavor: 'Jjigae',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/72/Korean.cuisine-Budae.jjigae-01.jpg',
+      quantity: 1000
+    }),
+    Soup.create({
+      name: 'Miyeok-guk',
+      price: 600,
+      flavor: 'Jjigae',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/3/36/Miyeok-guk.jpg',
       quantity: 1000
     })
   ])
