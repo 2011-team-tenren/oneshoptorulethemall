@@ -62,6 +62,11 @@ export class OrderHistory extends Component {
               </div>
             )
           })}
+        {orderHistory.length === 0 ? (
+          <Link to="/soups">
+            <h1>Make your first order!</h1>
+          </Link>
+        ) : null}
       </div>
     )
   }
