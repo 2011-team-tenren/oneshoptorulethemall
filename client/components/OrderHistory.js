@@ -34,7 +34,7 @@ export class OrderHistory extends Component {
     const orderHistory = this.state.orderHistory
     return (
       <div>
-        <h1>Your History:</h1>
+        <h1>Your Order History:</h1>
         {orderHistory &&
           orderHistory.map(order => {
             let orderTotal = 0
