@@ -3,13 +3,14 @@ import React from 'react'
 export default function AdminNewSoupForm(props) {
   return (
     <div>
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={props.handleSubmit} className="form-container">
         <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
           name="name"
           value={props.name}
+          placeholder="Soup name..."
           onChange={props.handleChange}
         />
         <label htmlFor="flavor">Flavor:</label>
@@ -18,6 +19,7 @@ export default function AdminNewSoupForm(props) {
           id="flavor"
           name="flavor"
           value={props.flavor}
+          placeholder="Soup flavor..."
           onChange={props.handleChange}
         />
         <label htmlFor="quantity">Quantity:</label>
@@ -34,6 +36,7 @@ export default function AdminNewSoupForm(props) {
           id="price"
           name="price"
           value={props.price}
+          placeholder="Soup Image URL..."
           onChange={props.handleChange}
         />
         <label htmlFor="imageUrl">ImageUrl:</label>

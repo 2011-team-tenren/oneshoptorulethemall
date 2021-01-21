@@ -64,13 +64,11 @@ export class UserCart extends Component {
             userCart.soups.map(soup => {
               const {id, name, imageUrl, soup_order} = soup
               return (
-                <div key={id}>
-                  <Link to={`soups/${id}`}>
-                    <h2>Name: {name}</h2>
-                    <h2>Quantity: {soup_order.quantity}</h2>
-                    <h2>Total: ${soup_order.price / 100}</h2>
-                    <img src={imageUrl} style={imageStyle} />
-                  </Link>
+                <div key={id} className="cart-item">
+                  <h2>Name: {name}</h2>
+                  <h2>Quantity: {soup_order.quantity}</h2>
+                  <h2>Total: ${soup_order.price / 100}</h2>
+                  <img src={imageUrl} className="cartImg" />
                   <div>
                     <div>Edit Quantity: </div>
                     <form
@@ -103,13 +101,15 @@ export class UserCart extends Component {
           )}
         </section>
         {userCart.soups && userCart.soups.length > 0 ? (
-          <button
-            className="checkout"
-            type="submit"
-            onClick={() => this.checkoutUserCart(userId)}
-          >
-            Would You like to Checkout?
-          </button>
+          <div className="checkout-button">
+            <button
+              className="checkout"
+              type="submit"
+              onClick={() => this.checkoutUserCart(userId)}
+            >
+              Would You like to Checkout?
+            </button>
+          </div>
         ) : null}
       </div>
     )

@@ -89,96 +89,95 @@ export class SingleSoup extends Component {
 
     if (soupInReact) {
       return (
-        <div>
-          {this.props.isAdmin ? <h1>Edit Soup</h1> : null}
-          <h2>
-            {soupInReact.name}: ${soupInReact.price / 100}
-          </h2>
-          {this.props.isAdmin ? (
-            <h2>{soupInReact.quantity} cans in stock</h2>
-          ) : null}
-          <h3>Flavor: {soupInReact.flavor}</h3>
-          <img src={soupInReact.imageUrl} style={imageStyle} />
-          {this.props.isAdmin ? (
-            <AdminForm
-              editQty={this.state.editQty}
-              editPrice={this.state.editPrice}
-              handleChange={this.handleChange}
-              handleEdit={this.handleEdit}
-              removeSoup={this.removeSoup}
-            />
-          ) : (
-            <div>
-              <select
-                name="quantity"
-                id="quantity"
-                value={this.state.value}
-                onChange={this.handleChange}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-              </select>
+        <div className="single-soup-container">
+          <section>
+            {this.props.isAdmin ? <h1>Edit Soup</h1> : null}
+            <h2>
+              {soupInReact.name}: ${soupInReact.price / 100}
+            </h2>
+            {this.props.isAdmin ? (
+              <h2>{soupInReact.quantity} cans in stock</h2>
+            ) : null}
+            <h3>Flavor: {soupInReact.flavor}</h3>
+            <img src={soupInReact.imageUrl} className="single-soup-img" />
+            {this.props.isAdmin ? (
+              <AdminForm
+                editQty={this.state.editQty}
+                editPrice={this.state.editPrice}
+                handleChange={this.handleChange}
+                handleEdit={this.handleEdit}
+                removeSoup={this.removeSoup}
+              />
+            ) : (
+              <div>
+                <select
+                  name="quantity"
+                  id="quantity"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                </select>
 
-              <button
-                className="addToCart"
-                size="small"
-                variant="contained"
-                color="secondary"
-                type="submit"
-                onClick={() => {
-                  if (this.props.userId) {
-                    this.handleClick(
-                      soupInReact.id,
-                      this.props.userId,
-                      this.state.quantity,
-                      null,
-                      null,
-                      event
-                    )
-                  } else {
-                    this.handleClick(
-                      null,
-                      null,
-                      this.state.quantity,
-                      soupInReact,
-                      soupInReact.flavor,
-                      event
-                    )
-                  }
-                }}
-              >
-                Add to Cart
-              </button>
-            </div>
-          )}
+                <button
+                  className="addToCart"
+                  type="submit"
+                  onClick={() => {
+                    if (this.props.userId) {
+                      this.handleClick(
+                        soupInReact.id,
+                        this.props.userId,
+                        this.state.quantity,
+                        null,
+                        null,
+                        event
+                      )
+                    } else {
+                      this.handleClick(
+                        null,
+                        null,
+                        this.state.quantity,
+                        soupInReact,
+                        soupInReact.flavor,
+                        event
+                      )
+                    }
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            )}
+          </section>
         </div>
       )
     } else {

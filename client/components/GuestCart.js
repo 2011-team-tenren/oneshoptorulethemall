@@ -77,66 +77,67 @@ export class GuestCart extends Component {
 
     return (
       <div>
-        {cart.length ? (
-          <div>
-            {cart.map((soup, idx) => {
-              return (
-                <div key={idx}>
-                  <h1>{soup.name}</h1>
-                  <img src={soup.imageUrl} style={imageStyle} />
-                  <h2>Price: ${soup.price / 100}</h2>
-                  <h2>Quantity: {soup.orderQuantity}</h2>
-                  <form>
-                    <label htmlFor="Edit Quantity">Edit Quantity</label>
-                    <input
-                      name="qty"
-                      type="number"
-                      max="30"
-                      min="0"
-                      value={this.state.qty}
-                      onChange={this.editQtyChange}
-                    />
-                    <button
-                      type="submit"
-                      onClick={() => {
-                        this.editQtyClick(soup, event)
-                      }}
-                    >
-                      Update
-                    </button>
-                    <div>
-                      Remove {soup.flavor} soups:{' '}
-                      <button
-                        className="remove"
-                        type="submit"
-                        onClick={() => this.removeSoupClick(soup, event)}
-                      >
-                        {' '}
-                        Remove{' '}
-                      </button>
-                    </div>
-                  </form>
-                  <h2>
-                    {soup.flavor} Total Price: $
-                    {soup.price * soup.orderQuantity / 100}
-                  </h2>
-                  <h2 />
-                </div>
-              )
-            })}
+        <section className="cart-container">
+          {cart.length ? (
             <div>
-              <button
-                className="checkout"
-                type="submit"
-                onClick={event => this.checkoutClick(event, cart)}
-              >
-                Checkout
-              </button>
+              {cart.map((soup, idx) => {
+                return (
+                  <div key={idx} className="cart-item">
+                    <h1>{soup.name}</h1>
+                    <img src={soup.imageUrl} className="cartImg" />
+                    <h2>Price: ${soup.price / 100}</h2>
+                    <h2>Quantity: {soup.orderQuantity}</h2>
+                    <form>
+                      <label htmlFor="Edit Quantity">Edit Quantity</label>
+                      <input
+                        name="qty"
+                        type="number"
+                        max="30"
+                        min="0"
+                        value={this.state.qty}
+                        onChange={this.editQtyChange}
+                      />
+                      <button
+                        type="submit"
+                        onClick={() => {
+                          this.editQtyClick(soup, event)
+                        }}
+                      >
+                        Update
+                      </button>
+                      <div>
+                        <button
+                          className="remove"
+                          type="submit"
+                          onClick={() => this.removeSoupClick(soup, event)}
+                        >
+                          {' '}
+                          Remove{' '}
+                        </button>
+                      </div>
+                    </form>
+                    <h2>
+                      {soup.flavor} Total Price: $
+                      {soup.price * soup.orderQuantity / 100}
+                    </h2>
+                    <h2 />
+                  </div>
+                )
+              })}
+              <div className="checkout-button">
+                <button
+                  className="checkout"
+                  type="submit"
+                  onClick={event => this.checkoutClick(event, cart)}
+                >
+                  Would You like to Checkout?
+                </button>
+              </div>
             </div>
-          </div>
-        ) : (
-          <h1>There are currently no soups in your cart!</h1>
-        )}
+          ) : (
+            <h1>There are currently no soups in your cart!</h1>
+          )}
+        </section>
       </div>
     )
   }
